@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en-US" ng-app="app">
+  <head>
+    <meta charset="UTF-8">
+    <title>Angular Demo - $element</title>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <h1>$element</h1>
+    <div ng-controller="MainCtrl">
+      <form name="CoolForm">
+        <h2>Application</h2>
+        <div ng-repeat="applicant in applications">
+          <h4>Personal Info</h4>
+          <input name="applicant.name" ng-model="applicant.name" required test-dir>
+          <input name="applicant.email" ng-model="applicant.email" required test-dir>
+          <h4>References</h4>
+          <div ng-repeat="reference in applicant.references">
+            <input name="reference.name" ng-model="reference.name">
+            <input name="reference.email" ng-model="reference.email">
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script>
+      var app = angular.module('app', []);
+
+      app.controller('MainCtrl', function($scope) {
+        $scope.applications = [
+          {
+            name: "Brett", 
+            email: "brett.s@gmail.com", 
+            references: [
+              {
+                name: "Corey", 
+                email: "corey.p@gmail.com"
+              }, 
+              {
+                name: "Tag", 
+                email: "tag@gmail.com"
+              }
+            ]
+          },
+          {
+            name: "Dave", 
+            email: "Dave.s@gmail.com", 
+            references: [
+              {
+                name: "Frank", 
+                email: "Frank.p@gmail.com"
+              }, 
+              {
+                name: "Kendrick", 
+                email: "Kendrick@gmail.com"
+              }
+            ]
+          }
+        ];
+      });
+
+      dirFunc.$inject = ['$element', '$attrs', '$scope'];
+
+      function dirFunc($element, $attrs, $scope) {
+        // console.log($element);
+        // console.log($attrs);
+        // console.log($scope);
+      }
+
+      app.directive('exampleEl', function() {
+        return {
+          controller: dirFunc,
+          link: function(scope, element, attrs) {
+
+          }
+        }
+      });
+
+      app.directive('testDir', function() {
+
+        var nullFormCtrl = {
+          $addControl: angular.noop,
+          $removeControl: angular.noop,
+          $setValidity: angular.noop,
+          $setDirty: angular.noop,
+          $setPristine: angular.noop
+        };
+
+        return {
+          require: '^form',
+          link: function(scope, element, attrs, ctrl) {
+            scope.$watch(function() {
+              return scope.applications;
+            }, function() {
+              console.log(scope);
+            }, true);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

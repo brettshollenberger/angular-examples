@@ -1,0 +1,19 @@
+{
+  "name": "mediator",
+  "version": "0.0.0",
+  "authors": [
+    "Brett Shollenberger <brett.shollenberger@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "latest",
+    "angular-mediator": "latest"
+  }
+}

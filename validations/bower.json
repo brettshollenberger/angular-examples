@@ -1,0 +1,23 @@
+{
+  "name": "Validator",
+  "version": "0.0.0",
+  "authors": [
+    "Brett Shollenberger <brett.shollenberger@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "active-support": "0.0.7",
+    "angular": "latest",
+    "lodash": "latest"
+  },
+  "devDependencies": {
+    "angular-mocks": "latest"
+  }
+}

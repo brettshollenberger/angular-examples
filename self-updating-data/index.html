@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-US" ng-app="app">
+  <head>
+    <meta charset="UTF-8">
+    <title>Angular Demo - Self-Updating Data</title>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <h1>Self-Updating Data</h1>
+    <div ng-controller="MainCtrl">
+      <input ng-model="user.email">
+      {{user | json}}
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script>
+        angular
+            .module('app', [])
+            .controller('MainCtrl', ['User', '$scope', function(User, $scope) {
+                $scope.user = new User({id: 1, email: 'brett.shollenberger@gmail.com'});
+            }])
+            .provider('User', function() {
+                this.$get = function() {
+                    function User(data) {
+                        if (User.cached[data.id]) return User.cached[data.id];
+                        this.id    = data.id;
+                        this.email = data.email;
+                        this.blog  = '';
+
+                        var update = function() {
+                            this.blog = this.email;
+                        }.bind(this);
+
+                        Object.defineProperty(this, 'email', {
+                            get: function() {
+                                return email;
+                            },
+                            set: (function() {
+                                email = data.email;
+                                return function(value) {
+                                    email = value;
+                                    update();
+                                    return;
+                                }
+                            })()
+                        });
+
+                        User.cached[data.id] = this;
+                    }
+                    User.cached = {};
+                    return User;
+                }
+            })
+    </script>
+  </body>
+</html>

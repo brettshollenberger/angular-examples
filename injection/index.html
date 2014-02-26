@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-US" ng-app="app">
+  <head>
+    <meta charset="UTF-8">
+    <title>Angular Demo - Injection</title>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <h1>Injection</h1>
+    <div ng-controller="MainCtrl">
+      
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script>
+      var app = angular.module('app', []);
+
+      function myFactory($rootScope) {
+        return {
+          hello: 'werld',
+          scope: $rootScope
+        }
+      };
+
+      myFactory.$inject = ['$rootScope'];
+
+      app.factory('myFactory', myFactory);
+
+      app.controller('MainCtrl', ['myFactory', '$scope', function(myFactory, $scope) {
+        $scope.factory = myFactory;
+
+        console.log($scope.factory);
+      }]);
+    </script>
+  </body>
+</html>

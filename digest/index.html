@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS test</title>
+
+  <script src="http://code.angularjs.org/1.2.0-rc.3/angular.js"></script>
+  <script src="http://code.angularjs.org/1.2.0-rc.3/angular-mocks.js"></script>
+
+  <script src="scripts/lib/app.js"></script>
+  <script src="scripts/spec/app.spec.js"></script>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div ng-app="app">
+
+    <div class="row" style="padding: 0px 40px 0px 40px">
+      <h2>All controllers are siblings in this example.</h2>
+
+      <h4>Object Literals</h4>
+      <div ng-controller="FirstCtrl">
+        {{user.data}}
+        <input ng-model="user.data">
+        <div updater user="user"></div>
+      </div>
+      <div ng-controller="SecondCtrl">
+        {{user.data}}
+        <input ng-model="user.data">
+        <div updater user="user"></div>
+      </div>
+
+      <br>
+
+      <h4>Same Object Retrieved From Provider</h4>
+      <div ng-controller="ThirdCtrl">
+        {{user.data}}
+        <input ng-model="user.data">
+        <div updater user="user"></div>
+      </div>
+      <div ng-controller="FourthCtrl">
+        {{user.data}}
+        <input ng-model="user.data">
+        <div updater user="user"></div>
+      </div>
+
+      <h4>Same Information, via Constructors</h4>
+      <div ng-controller="FifthCtrl">
+        {{user.data}}
+        <input ng-model="user.data">
+        <div updater user="user"></div>
+      </div>
+      <div ng-controller="SixthCtrl">
+        {{user.data}}
+        <input ng-model="user.data">
+        <div updater user="user"></div>
+      </div>
+
+      <h2>Best practice for models:</h2>
+      <h4>Same Information, Cached by Constructor</h4>
+      <div ng-controller="SeventhCtrl">
+        {{user.data}}
+        <input ng-model="user.data">
+        <div updater user="user"></div>
+      </div>
+      <div ng-controller="EighthCtrl">
+        {{user.data}}
+        <input ng-model="user.data">
+        <div updater user="user"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

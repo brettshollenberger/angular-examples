@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+<body ng-app="app">
+
+  <div ng-controller="MainCtrl" class="container main-container">
+
+    <div class="row">
+      <div class="col-md-11">
+
+        <form role="form">
+          <div class="form-group">
+
+            <label 
+             for="fuzzy">
+             Fuzzy
+            </label>
+
+            <input 
+             type="text" 
+             class="form-control" 
+             id="fuzzy" 
+             ng-model="filter.fuzzy"
+             placeholder="Fuzzy">
+
+          </div>
+        </form>
+
+        <form role="form">
+          <div class="form-group">
+
+            <label 
+             for="name">
+             Name
+            </label>
+
+            <input 
+             type="text" 
+             class="form-control" 
+             id="name" 
+             ng-model="filter.name"
+             placeholder="Name">
+
+          </div>
+        </form>
+
+        <div class="form-group">
+          <label 
+           class="control-label">
+           <i class="fa fa-calendar"></i> 
+           <i class="fa fa-arrows-h"></i> 
+           <i class="fa fa-calendar"></i> 
+           Joined
+         </label>
+         <br>
+
+         <div class="form-group">
+          <input 
+           type="text" 
+           class="form-control" 
+           ng-model="fromDate" 
+           data-min-date="{{minDate}}" 
+           placeholder="No earlier than" 
+           bs-datepicker>
+         </div>
+
+         <div class="form-group">
+          <input 
+           type="text" 
+           class="form-control" 
+           ng-model="untilDate" 
+           data-max-date="{{maxDate}}" 
+           placeholder="No later than" 
+           bs-datepicker>
+         </div>
+      </div>
+
+        <table class="table table-striped">
+          <thead>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Joined</th>
+          </thead>
+          <tbody>
+            <tr 
+             ng-repeat="user in users
+                        | filter:filter.fuzzy
+                        | filter:{name: filter.name}
+                        | filter:{joined: fromDate}:min
+                        | filter:{joined: untilDate}:max">
+              <td>{{user.name}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.joined | date}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
+  <script src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
+  <script src="lib/app.js"></script>
+  <script src="lib/mocks/users.js"></script>
+  <script src="lib/controllers/main.js"></script>
+  <script src="lib/filters/currency.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en-US" ng-app="app">
+  <head>
+    <meta charset="UTF-8">
+    <title>Angular Demo - Isolate Scopes</title>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <h1>Isolate Scopes</h1>
+    <div ng-controller="MainCtrl">
+      <h3>Parent Scope</h3>
+      {{user | json}}<br>
+      Name: <input ng-model="user.name"><br>
+      Email: <input ng-model="user.email"><br>
+      Age: <input ng-model="user.age"><br>
+      <h3>Isolate Scope</h3>
+      <div interp user="user">{{user | json}}</div>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>

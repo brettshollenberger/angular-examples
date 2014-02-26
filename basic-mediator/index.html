@@ -1,0 +1,45 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <title>Mediator Pattern</title>
+  <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+</head>
+<body ng-controller="MainCtrl">
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">ORDERBOX</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a data-toggle="tab" href="#quickstart" onclick="tabAction(this)">Quick Start</a>
+        </li>
+        <li>
+          <a data-toggle="tab" href="#fontawesome" onclick="tabAction(this)">
+            <i class="fa fa-flag"></i>
+            <span>Present Orders!</span>
+          </a>
+        </li>
+        <li>
+          <a data-toggle="tab" href="#bootswatch" onclick="tabAction(this)">Past Orders</a>
+        </li>
+        <li>
+          <a data-toggle="tab" href="#legacy" onclick="tabAction(this)">My Account</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="jumbotron">
+    <h1>Placing Orders, Taking Names</h1>
+    <button ng-click="newOrder()" class="btn btn-primary" style="margin:auto;">Place new order</button>
+  </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>

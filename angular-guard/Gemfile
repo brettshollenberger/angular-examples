@@ -1,0 +1,6 @@
+group :development do
+  gem 'jasmine'
+  gem 'terminal-notifier-guard'
+  gem 'rb-fsevent', '~> 0.9'
+  gem 'guard-jasmine'
+end

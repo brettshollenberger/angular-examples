@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en-US" ng-app="app">
+  <head>
+    <meta charset="UTF-8">
+    <title>Angular Demo - Data Syncing</title>
+  </head>
+  <body>
+    <h1>Data Syncing</h1>
+
+    <h3>First Ctrl</h3>
+    <div ng-controller="FirstCtrl">
+      <input ng-model="user.email">
+      {{user.email}}
+    </div>
+
+    <h3>Second Ctrl</h3>
+    <div ng-controller="SecondCtrl">
+      <input ng-model="user.email">
+      {{user.email}}
+    </div>
+    <script src="scripts/angular.js"></script>
+    <script>
+      var app = angular.module('app', []);
+
+      app.controller('FirstCtrl', ['$scope', 'User', function($scope, User) {
+        $scope.user = new User({id: 1, email: 'brett.shollenberger@gmail.com'});
+      }]);
+
+      app.controller('SecondCtrl', ['$scope', 'User', function($scope, User) {
+        $scope.user = new User({id: 1, email: 'brett.shollenberger@gmail.com'});
+      }]);
+
+      app.provider('User', function() {
+        this.$get = function() {
+          function User(data) {
+            if (User.cached[data.id]) return User.cached[data.id];
+            this.id    = data.id;
+            this.email = data.email;
+            User.cached[data.id] = this;
+          }
+          User.cached = {};
+          return User;
+        }
+      });
+    </script>
+  </body>
+</html>

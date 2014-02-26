@@ -1,0 +1,4 @@
+guard "jasmine", :server => :jasmine_gem, :jasmine_url => 'http://localhost:8888/', :port => 8888, all_on_start: true do
+  watch(%r{app/scripts/lib/(.+?)\.(js.\.coffee|js|coffee)$}) { |m| "spec/#{ m[1] }.spec.#{ m[2] }" }
+  watch(%r{spec/.+\.spec\.(js\.coffee|js|coffee)$}) { "spec" }
+end

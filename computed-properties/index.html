@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en-US" ng-app="app">
+  <head>
+    <meta charset="UTF-8">
+    <title>Angular Demo - </title>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <h1></h1>
+    <div ng-controller="MainCtrl">
+      First: <input ng-model="user.first"><br>
+      Last: <input ng-model="user.last"><br>
+      Full: {{user.full}}
+
+      <div ng-repeat="otherUser in otherUsers">
+        {{otherUser.full}} <button ng-click="user.addEmergencyContact1(otherUser)" class="btn btn-primary">Add As Emergency Contact 1</button>
+        <button ng-click="user.addEmergencyContact2(otherUser)" class="btn btn-primary">Add As Emergency Contact 2</button>
+      </div>
+
+      <div ng-repeat="contact in user.emergencyContacts">
+        {{contact.first}}
+      </div>
+
+    </div>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en-US" ng-app="app">
+  <head>
+    <meta charset="UTF-8">
+    <title>Angular Demo - Deferreds</title>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <h1>Deferreds</h1>
+    <div ng-controller="MainCtrl">
+      <table class="table table-striped">
+        <thead>
+          <th>URL</th>
+          <th>ID</th>
+          <th>User</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="request in github">
+            <td>{{request.url}}</td>
+            <td>{{request.id}}</td>
+            <td>{{request.user.login}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script> 
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
